@@ -52,10 +52,10 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: status
-                  type: varchar(10)
+                  type: varchar(20)
                   constraints:
                     nullable: false
-                  defaultValue: "NAO_FINALIZADO"
+                  defaultValue: "NAO_FINALIZADA"
         - addForeignKeyConstraint:
             baseColumnNames: bolao_id
             baseTableName: partidas
