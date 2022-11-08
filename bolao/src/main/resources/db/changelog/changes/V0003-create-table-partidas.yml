@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0003
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: partidas
+            columns:
+              - column:
+                  name: partida_id
+                  type: uuid
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: bolao_id
+                  type: uuid
+                  constraints:
+                    nullable: true
+              - column:
+                  name: time_1
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: time_2
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: resultado_time_1
+                  type: int
+                  constraints:
+                    nullable: false
+                  defaultValue: 0
+              - column:
+                  name: resultado_time_2
+                  type: int
+                  constraints:
+                    nullable: false
+                  defaultValue: 0
+              - column:
+                  name: descricao
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: partida_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+                  defaultValue: "NAO_FINALIZADO"
+        - addForeignKeyConstraint:
+            baseColumnNames: bolao_id
+            baseTableName: partidas
+            constraintName: fk_partidas_boloes
+            referencedColumnNames: bolao_id
+            referencedTableName: boloes

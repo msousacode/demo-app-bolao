@@ -1,0 +1,25 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0001
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: usuarios
+            columns:
+              - column:
+                  name: usuario_id
+                  type: uuid
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome
+                  type: varchar(100)
+                  constraints:
+                    nullable: false

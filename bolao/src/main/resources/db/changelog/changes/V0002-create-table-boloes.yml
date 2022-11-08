@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0002
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: boloes
+            columns:
+              - column:
+                  name: bolao_id
+                  type: uuid
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: usuario_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nome
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: descricao
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: link
+                  type: varchar(100)
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseColumnNames: usuario_id
+            baseTableName: boloes
+            constraintName: fk_boloes_usuarios
+            referencedColumnNames: usuario_id
+            referencedTableName: usuarios

@@ -1,0 +1,49 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0004
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: palpites
+            columns:
+              - column:
+                  name: palpite_id
+                  type: uuid
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: partida_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: usuario_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+              - column:
+                  name: palpite_time_1
+                  type: int
+                  constraints:
+                    nullable: false
+                  defaultValue: 0
+              - column:
+                  name: palpite_time_2
+                  type: int
+                  constraints:
+                    nullable: false
+                  defaultValue: 0
+        - addForeignKeyConstraint:
+            baseColumnNames: partida_id
+            baseTableName: palpites
+            constraintName: fk_palpites_partidas
+            referencedColumnNames: partida_id
+            referencedTableName: partidas
+        - addForeignKeyConstraint:
+            baseColumnNames: usuario_id
+            baseTableName: palpites
+            constraintName: fk_palpites_usuarios
+            referencedColumnNames: usuario_id
+            referencedTableName: usuarios
