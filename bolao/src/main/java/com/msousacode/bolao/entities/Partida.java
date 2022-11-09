@@ -39,6 +39,10 @@ public class Partida {
     @JoinColumn(name = "bolao_id")
     private Bolao bolao;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "campeonato_id")
+    private Campeonato campeonato;
+
     @OneToOne(mappedBy = "partida", fetch = FetchType.LAZY)
     private Palpite palpite;
 }
