@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0006
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: campeonatos
+            columns:
+              - column:
+                  name: campeonato_id
+                  type: uuid
+                  defaultValue: gen_random_uuid()
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: nome
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: rodada
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: data_inicio
+                  type: timestamp
+                  constraints:
+                    nullable: false

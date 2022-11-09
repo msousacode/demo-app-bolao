@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0006
+      author: msousacode
+      changes:
+        - addColumn:
+            tableName: partidas
+            columns:
+              - column:
+                  name: campeonato_id
+                  type: uuid
+                constraints:
+                  nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: campeonato_id
+            baseTableName: partidas
+            constraintName: fk_partidas_campeonatos
+            referencedColumnNames: campeonato_id
+            referencedTableName: campeonatos
