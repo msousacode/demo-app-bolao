@@ -3,6 +3,7 @@ package com.msousacode.bolao.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
@@ -23,5 +24,5 @@ public class Campeonato {
     private Integer rodada;
 
     @Column(name = "data_inicio")
-    private LocalDateTime dataInicio;
+    private LocalDate dataInicio;
 }
