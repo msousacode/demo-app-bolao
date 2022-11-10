@@ -4,7 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -25,4 +26,8 @@ public class Campeonato {
 
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
+
+
+    @OneToMany(mappedBy = "campeonato", fetch = FetchType.EAGER)
+    public List<Partida> partidas = new ArrayList<>();
 }
