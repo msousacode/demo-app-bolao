@@ -43,10 +43,6 @@ public class Partida {
     private PartidaStatusType status;
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bolao_id")
-    private Bolao bolao;
-
     @JsonIgnore//Adicionado para ignorar a serialização dessa propriedade.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campeonato_id")

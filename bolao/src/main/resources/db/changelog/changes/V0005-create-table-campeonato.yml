@@ -14,6 +14,11 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
+                  name: bolao_id
+                  type: uuid
+                  constraints:
+                    nullable: true
+              - column:
                   name: nome
                   type: varchar(255)
                   constraints:
@@ -29,3 +34,9 @@ databaseChangeLog:
                   type: timestamp
                   constraints:
                     nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: bolao_id
+            baseTableName: campeonatos
+            constraintName: fk_campeonatos_boloes
+            referencedColumnNames: campeonato_id
+            referencedTableName: campeonatos

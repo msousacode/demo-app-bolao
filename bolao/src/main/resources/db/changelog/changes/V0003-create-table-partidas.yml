@@ -14,11 +14,6 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: bolao_id
-                  type: uuid
-                  constraints:
-                    nullable: true
-              - column:
                   name: time_1
                   type: varchar(20)
                   constraints:
@@ -57,9 +52,3 @@ databaseChangeLog:
                   defaultValueConstraintName: "NAO_FINALIZADA"
                   constraints:
                     nullable: false
-        - addForeignKeyConstraint:
-            baseColumnNames: bolao_id
-            baseTableName: partidas
-            constraintName: fk_partidas_boloes
-            referencedColumnNames: bolao_id
-            referencedTableName: boloes

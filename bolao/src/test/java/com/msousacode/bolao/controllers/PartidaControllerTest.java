@@ -26,7 +26,7 @@ public class PartidaControllerTest {
     @Test
     void cadastrarCampeonato_entaoSucesso() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/partidas/c7f20048-0f9f-42c0-95bd-d0f65faade89/campeonato");
+        URI uri = new URI("http://localhost:" + port + "/api/partidas/dcffed1f-b12e-4f20-9002-20d908c753d8/campeonato");
 
         var partida = new PartidaDTO(null, "BRA", "ARG", 0, 0, PartidaStatusType.NAO_FINALIZADA);
 
