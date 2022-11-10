@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -37,21 +38,21 @@ public class PartidaController {
             @RequestBody @Valid PartidaDTO partidaDTO,
             @PathVariable("campeonato_id") @NotEmpty(message = "ID do Campeonato deve ser informado") @Valid UUID uuid) throws Exception {
 
-            var campeonato = campeonatoRepository.findById(uuid);
+        var campeonato = campeonatoRepository.findById(uuid);
 
-            if(campeonato.isPresent()) {
+        if (campeonato.isPresent()) {
 
-                var partida = new Partida(campeonato.get());
+            var partida = new Partida(campeonato.get());
 
-                BeanUtils.copyProperties(partidaDTO, partida);
+            BeanUtils.copyProperties(partidaDTO, partida);
 
-                var result = partidaRepository.save(partida);
+            var result = partidaRepository.save(partida);
 
-                var response = new PartidaDTO(result.getId(), result.getTime1(), result.getTime2(), new CampeonatoDTO(result.getCampeonato()));
+            var response = new PartidaDTO(result);
 
-                return ResponseEntity.status(HttpStatus.CREATED).body(response);
-            } else {
-                throw new Exception("Não foi encontrado o recurso para o uuid: " + uuid);//TODO pensar em algo melhor.
-            }
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } else {
+            throw new Exception("Não foi encontrado o recurso para o uuid: " + uuid);//TODO pensar em algo melhor.
+        }
     }
 }

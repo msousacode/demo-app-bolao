@@ -1,6 +1,7 @@
 package com.msousacode.bolao.controllers;
 
 import com.msousacode.bolao.dtos.PartidaDTO;
+import com.msousacode.bolao.enuns.PartidaStatusType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,7 +28,7 @@ public class PartidaControllerTest {
 
         URI uri = new URI("http://localhost:" + port + "/api/partidas/c7f20048-0f9f-42c0-95bd-d0f65faade89/campeonato");
 
-        var partida = new PartidaDTO(null, "BRA", "ARG", null);
+        var partida = new PartidaDTO(null, "BRA", "ARG", 0, 0, PartidaStatusType.NAO_FINALIZADA);
 
         ResponseEntity<Void> response = restTemplate.postForEntity(uri, partida, Void.class);
 

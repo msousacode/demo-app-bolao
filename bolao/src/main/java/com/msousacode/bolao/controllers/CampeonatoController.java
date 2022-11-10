@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/campeonatos")
@@ -29,8 +32,17 @@ public class CampeonatoController {
 
         var result = campeonatoRepository.save(campeonato);
 
-        var response = new CampeonatoDTO(result.getId(), result.getNome(), result.getRodada(), result.getDataInicio());
+        var response = new CampeonatoDTO(result.getId(), result.getNome(), result.getRodada(), result.getDataInicio(), List.of());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping("/{campeonato_id}")
+    public ResponseEntity<CampeonatoDTO> buscar(
+            @PathVariable("campeonato_id") @NotEmpty(message = "ID do Campeonato deve ser informado") @Valid UUID uuid) {
+
+        var campeonato = campeonatoRepository.findById(uuid);
+
+        return ResponseEntity.ok(new CampeonatoDTO(campeonato.get()));
     }
 }

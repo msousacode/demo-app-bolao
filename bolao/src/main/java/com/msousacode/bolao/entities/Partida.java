@@ -1,18 +1,18 @@
 package com.msousacode.bolao.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msousacode.bolao.enuns.PartidaStatusType;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "partidas")
 public class Partida {
+
+    public Partida(){}
 
     public Partida(Campeonato campeonato) {
         this.campeonato = campeonato;
@@ -47,10 +47,8 @@ public class Partida {
     @JoinColumn(name = "bolao_id")
     private Bolao bolao;
 
+    @JsonIgnore//Adicionado para ignorar a serialização dessa propriedade.
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "campeonato_id")
     private Campeonato campeonato;
-
-    @OneToOne(mappedBy = "partida", fetch = FetchType.LAZY)
-    private Palpite palpite;
 }
