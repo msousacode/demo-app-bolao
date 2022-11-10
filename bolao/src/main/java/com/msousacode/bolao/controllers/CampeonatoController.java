@@ -38,7 +38,7 @@ public class CampeonatoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("/{campeonato_id}")
+    @GetMapping("/{campeonato_id}/partidas")
     public ResponseEntity<CampeonatoDTO> buscar(
             @PathVariable("campeonato_id") @NotEmpty(message = "ID do Campeonato deve ser informado") @Valid UUID uuid) {
 
