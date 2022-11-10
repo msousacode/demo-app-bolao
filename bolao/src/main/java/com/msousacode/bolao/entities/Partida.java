@@ -6,12 +6,17 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Data
 @Entity
 @Table(name = "partidas")
 public class Partida {
+
+    public Partida(Campeonato campeonato) {
+        this.campeonato = campeonato;
+    }
 
     @Id
     @GeneratedValue
@@ -25,10 +30,10 @@ public class Partida {
     private String time2;
 
     @Column(name = "resultado_time_1")
-    private String resultadoTime1;
+    private Integer resultadoTime1;
 
     @Column(name = "resultado_time_2")
-    private String resultadoTime2;
+    private Integer resultadoTime2;
 
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)

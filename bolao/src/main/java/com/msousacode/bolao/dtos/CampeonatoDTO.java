@@ -1,5 +1,7 @@
 package com.msousacode.bolao.dtos;
 
+import com.msousacode.bolao.entities.Campeonato;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -11,4 +13,7 @@ public record CampeonatoDTO(
         @NotNull(message = "Rodada não pode ser nula.") Integer rodada,
         @NotNull(message = "Data de inicio do campeonato não deve ser nula.") LocalDate dataInicio
 ) {
+    public CampeonatoDTO(Campeonato campeonato){
+        this(campeonato.getId(), campeonato.getNome(), campeonato.getRodada(), campeonato.getDataInicio());
+    }
 }
