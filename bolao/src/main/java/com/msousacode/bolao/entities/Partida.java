@@ -16,6 +16,9 @@ public class Partida {
 
     public Partida(Campeonato campeonato) {
         this.campeonato = campeonato;
+        this.resultadoTime1 = 0;
+        this.resultadoTime2 = 0;
+        this.status = PartidaStatusType.NAO_FINALIZADA;
     }
 
     @Id

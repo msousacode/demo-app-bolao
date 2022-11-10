@@ -31,13 +31,15 @@ databaseChangeLog:
               - column:
                   name: resultado_time_1
                   type: int
+                  defaultValueNumeric: 0
                   constraints:
-                  defaultValue: 0
+                    nullable: false
               - column:
                   name: resultado_time_2
                   type: int
+                  defaultValueNumeric: 0
                   constraints:
-                  defaultValue: 0
+                    nullable: false
               - column:
                   name: descricao
                   type: varchar(255)
@@ -46,13 +48,15 @@ databaseChangeLog:
               - column:
                   name: partida_date
                   type: timestamp
-                  constraints:
                   defaultValue: now()
+                  constraints:
+                    nullable: false
               - column:
                   name: status
                   type: varchar(20)
+                  defaultValueConstraintName: "NAO_FINALIZADA"
                   constraints:
-                  defaultValue: "NAO_FINALIZADA"
+                    nullable: false
         - addForeignKeyConstraint:
             baseColumnNames: bolao_id
             baseTableName: partidas
