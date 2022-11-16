@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 public enum ServiceErrorsType {
 
     INVALID_ACCESS(HttpStatus.FORBIDDEN, "invalid.access"),
-    NEW_PASS_WORD_REQUIRED(HttpStatus.PRECONDITION_FAILED, "change.password.required");
+    NEW_PASS_WORD_REQUIRED(HttpStatus.PRECONDITION_FAILED, "change.password.required"),
+    RESOURCE_NOT_FOUND(HttpStatus.NOT_FOUND, "resource.not.found");
 
     private final HttpStatus status;
     private final String msg;

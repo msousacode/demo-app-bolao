@@ -3,6 +3,7 @@ package com.msousacode.bolao.web.controller;
 
 import com.msousacode.bolao.exception.ResourceNotFoundException;
 import com.msousacode.bolao.persistence.entity.Campeonato;
+import com.msousacode.bolao.persistence.entity.types.ServiceErrorsType;
 import com.msousacode.bolao.persistence.repository.CampeonatoRepository;
 import com.msousacode.bolao.web.dtos.CampeonatoDTO;
 import org.springframework.beans.BeanUtils;
@@ -47,6 +48,6 @@ public class CampeonatoController {
         if (campeonato.isPresent())
             return ResponseEntity.ok(new CampeonatoDTO(campeonato.get()));
         else
-            throw new ResourceNotFoundException("Recuroso não encontrato");//TODO centralizar as mensagens de sistema
+            throw new ResourceNotFoundException(ServiceErrorsType.RESOURCE_NOT_FOUND.getMsg());
     }
 }
