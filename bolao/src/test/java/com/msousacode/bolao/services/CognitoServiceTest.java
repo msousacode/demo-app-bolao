@@ -14,6 +14,6 @@ public class CognitoServiceTest {
     @Test
     public void teste() {
 
-        cognitoService.login("msousacode@gmail.com", "DZaa#UJ0");
+        cognitoService.login("msousacode@gmail.com", "NovaSenha@123");
     }
 }

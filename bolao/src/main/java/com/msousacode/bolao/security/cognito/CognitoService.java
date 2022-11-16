@@ -49,7 +49,7 @@ public class CognitoService {
 
             var authResult = cognitoIdentityProvider.adminInitiateAuth(authRequest);
 
-            if (authResult.getChallengeName() == ChallengeNameType.NEW_PASSWORD_REQUIRED.name()) {
+            if (ChallengeNameType.NEW_PASSWORD_REQUIRED.name().equals(authResult.getChallengeName())) {
                 throw new ServiceException(ServiceErrorsType.NEW_PASS_WORD_REQUIRED);
             }
             //Todo Adicinar logs infos

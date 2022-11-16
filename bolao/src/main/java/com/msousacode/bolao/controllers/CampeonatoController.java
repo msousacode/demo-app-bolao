@@ -4,7 +4,7 @@ package com.msousacode.bolao.controllers;
 import com.msousacode.bolao.dtos.CampeonatoDTO;
 import com.msousacode.bolao.entities.Campeonato;
 import com.msousacode.bolao.exceptions.ResourceNotfoundException;
-import com.msousacode.bolao.repositories.CampeonatoRepository;
+import com.msousacode.bolao.repository.CampeonatoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,8 +21,8 @@ import java.util.UUID;
 @RequestMapping("/api/campeonatos")
 public class CampeonatoController {
 
-    @Autowired
-    private CampeonatoRepository campeonatoRepository;//TODO depois criar a Service e distribuir a lógica.
+   /* @Autowired
+    private CampeonatoRepository campeonatoRepository;
 
     @Transactional
     @PostMapping
@@ -44,9 +44,9 @@ public class CampeonatoController {
 
         var campeonato = campeonatoRepository.findById(uuid);
 
-        if(campeonato.isPresent())
+        if (campeonato.isPresent())
             return ResponseEntity.ok(new CampeonatoDTO(campeonato.get()));
         else
             throw new ResourceNotfoundException("Recuroso não encontrato");//TODO centralizar as mensagens de sistema
-    }
+    }*/
 }

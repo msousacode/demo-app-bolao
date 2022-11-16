@@ -1,4 +1,4 @@
-package com.msousacode.bolao.repositories;
+package com.msousacode.bolao.repository;
 
 import com.msousacode.bolao.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
