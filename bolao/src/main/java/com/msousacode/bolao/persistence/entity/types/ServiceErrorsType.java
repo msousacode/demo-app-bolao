@@ -1,4 +1,4 @@
-package com.msousacode.bolao.enuns;
+package com.msousacode.bolao.persistence.entity.types;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

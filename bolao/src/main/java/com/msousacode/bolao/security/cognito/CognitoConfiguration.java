@@ -1,10 +1,6 @@
 package com.msousacode.bolao.security.cognito;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.auth.EnvironmentVariableCredentialsProvider;
-import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProviderClientBuilder;
 import com.nimbusds.jose.JWSAlgorithm;
@@ -43,14 +39,16 @@ public class CognitoConfiguration {
     private String jwkUrl;
 
     @Bean
-    public AWSCognitoIdentityProvider cognitoIdentityProvider() throws Exception {
+    public AWSCognitoIdentityProvider cognitoIdentityProvider() {
         logger.debug("Configuring Cognito");
 
+        //Outra maneira de capturar as variáveis do Cognito, pode-se armazenar os valores no application.properties.
         //BasicAWSCredentials awsCredentials = new BasicAWSCredentials("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY");
 
         var awsCredentials = new EnvironmentVariableCredentialsProvider();
         AWSCognitoIdentityProvider cognitoIdentityProvider = AWSCognitoIdentityProviderClientBuilder.standard()
                 .withRegion(region)
+                //Aqui incorma as credenciais
                 //.withCredentials(new AWSStaticCredentialsProvider(awsCredentials)).build();
                 .withCredentials(awsCredentials).build();
         logger.debug("Cognito initialized successfully");

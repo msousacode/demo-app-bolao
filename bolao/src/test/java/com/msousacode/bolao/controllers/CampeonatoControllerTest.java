@@ -1,6 +1,6 @@
 package com.msousacode.bolao.controllers;
 
-import com.msousacode.bolao.dtos.CampeonatoDTO;
+import com.msousacode.bolao.web.dtos.CampeonatoDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,21 +1,7 @@
-package com.msousacode.bolao.controllers;
+package com.msousacode.bolao.web.controller;
 
 
-import com.msousacode.bolao.dtos.CampeonatoDTO;
-import com.msousacode.bolao.entities.Campeonato;
-import com.msousacode.bolao.exceptions.ResourceNotfoundException;
-import com.msousacode.bolao.repository.CampeonatoRepository;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/campeonatos")

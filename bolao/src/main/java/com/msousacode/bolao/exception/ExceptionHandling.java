@@ -1,4 +1,4 @@
-package com.msousacode.bolao.exceptions;
+package com.msousacode.bolao.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,8 @@ public class ExceptionHandling {
         return new ResponseEntity<Map<String, String>>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ResourceNotfoundException.class)
-    public ResponseEntity<Object> exception(ResourceNotfoundException ex) {
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Object> exception(ResourceNotFoundException ex) {
         return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

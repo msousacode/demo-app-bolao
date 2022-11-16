@@ -1,20 +1,7 @@
-package com.msousacode.bolao.controllers;
+package com.msousacode.bolao.web.controller;
 
 
-import com.msousacode.bolao.dtos.PartidaDTO;
-import com.msousacode.bolao.entities.Partida;
-import com.msousacode.bolao.repository.CampeonatoRepository;
-import com.msousacode.bolao.repository.PartidaRepository;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/partidas")

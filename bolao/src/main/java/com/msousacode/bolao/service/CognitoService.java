@@ -1,11 +1,11 @@
-package com.msousacode.bolao.security.cognito;
+package com.msousacode.bolao.service;
 
 import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
 import com.amazonaws.services.cognitoidp.model.AdminInitiateAuthRequest;
 import com.amazonaws.services.cognitoidp.model.AuthFlowType;
 import com.amazonaws.services.cognitoidp.model.ChallengeNameType;
-import com.msousacode.bolao.enuns.ServiceErrorsType;
-import com.msousacode.bolao.exceptions.ServiceException;
+import com.msousacode.bolao.persistence.entity.types.ServiceErrorsType;
+import com.msousacode.bolao.exception.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -52,12 +52,11 @@ public class CognitoService {
             if (ChallengeNameType.NEW_PASSWORD_REQUIRED.name().equals(authResult.getChallengeName())) {
                 throw new ServiceException(ServiceErrorsType.NEW_PASS_WORD_REQUIRED);
             }
-            //Todo Adicinar logs infos
+
             return authResult.getAuthenticationResult().getIdToken();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-            //Todo Adicionar logs erros
             throw new ServiceException(ServiceErrorsType.INVALID_ACCESS);
         }
     }

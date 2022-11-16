@@ -1,6 +1,6 @@
 package com.msousacode.bolao.security.filter;
 
-import com.msousacode.bolao.security.cognito.AwsCognitoIdTokenProcessor;
+import com.msousacode.bolao.security.cognito.CognitoIdTokenProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ public class AwsCognitoJwtAuthFilter extends GenericFilter {
     private static final Logger logger = LoggerFactory.getLogger(AwsCognitoJwtAuthFilter.class);
 
     @Autowired
-    private AwsCognitoIdTokenProcessor awsCognitoIdTokenProcessor;
+    private CognitoIdTokenProcessor awsCognitoIdTokenProcessor;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {

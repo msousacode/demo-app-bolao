@@ -1,4 +1,4 @@
-package com.msousacode.bolao.enuns;
+package com.msousacode.bolao.persistence.entity.types;
 
 public enum PartidaStatusType {
     NAO_FINALIZADA,

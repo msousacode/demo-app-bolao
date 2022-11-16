@@ -1,7 +1,6 @@
-package com.msousacode.bolao.dtos;
+package com.msousacode.bolao.web.dtos;
 
-import com.msousacode.bolao.entities.Campeonato;
-import com.msousacode.bolao.entities.Partida;
+import com.msousacode.bolao.persistence.entity.Campeonato;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

@@ -1,6 +1,6 @@
 package com.msousacode.bolao.security.cognito;
 
-import com.msousacode.bolao.security.JwtAuthentication;
+import com.msousacode.bolao.security.jwt.JwtAuthenticationToken;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.proc.ConfigurableJWTProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Component
-public class AwsCognitoIdTokenProcessor {
+public class CognitoIdTokenProcessor {
 
     @Value("${aws.cognito.identityPoolUrl}")
     private String identityPoolUrl;
@@ -33,7 +33,7 @@ public class AwsCognitoIdTokenProcessor {
             if (username != null) {
                 List<GrantedAuthority> grantedAuthorities = List.of( new SimpleGrantedAuthority("ROLE_ADMIN"));
                 User user = new User(username, "", List.of());
-                return new JwtAuthentication(user, claims, grantedAuthorities);
+                return new JwtAuthenticationToken(user, claims, grantedAuthorities);
             }
         }
         return null;

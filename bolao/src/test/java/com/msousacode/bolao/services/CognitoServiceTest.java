@@ -1,6 +1,6 @@
 package com.msousacode.bolao.services;
 
-import com.msousacode.bolao.security.cognito.CognitoService;
+import com.msousacode.bolao.service.CognitoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

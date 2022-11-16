@@ -1,4 +1,4 @@
-package com.msousacode.bolao.security;
+package com.msousacode.bolao.security.jwt;
 
 import com.nimbusds.jwt.JWTClaimsSet;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -6,12 +6,12 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class JwtAuthentication extends AbstractAuthenticationToken {
+public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 
     private final Object principal;
     private JWTClaimsSet jwtClaimsSet;
 
-    public JwtAuthentication(Object principal, JWTClaimsSet jwtClaimsSet, Collection<? extends GrantedAuthority> authorities) {
+    public JwtAuthenticationToken(Object principal, JWTClaimsSet jwtClaimsSet, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.principal = principal;
         this.jwtClaimsSet = jwtClaimsSet;

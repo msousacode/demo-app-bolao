@@ -1,7 +1,7 @@
-package com.msousacode.bolao.entities;
+package com.msousacode.bolao.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.msousacode.bolao.enuns.PartidaStatusType;
+import com.msousacode.bolao.persistence.entity.types.PartidaStatusType;
 import lombok.Data;
 
 import javax.persistence.*;

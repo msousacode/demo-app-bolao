@@ -1,4 +1,4 @@
-package com.msousacode.bolao.entities;
+package com.msousacode.bolao.persistence.entity;
 
 import lombok.Data;
 

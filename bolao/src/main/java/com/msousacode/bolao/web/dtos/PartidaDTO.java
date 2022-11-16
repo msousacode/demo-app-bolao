@@ -1,7 +1,7 @@
-package com.msousacode.bolao.dtos;
+package com.msousacode.bolao.web.dtos;
 
-import com.msousacode.bolao.entities.Partida;
-import com.msousacode.bolao.enuns.PartidaStatusType;
+import com.msousacode.bolao.persistence.entity.Partida;
+import com.msousacode.bolao.persistence.entity.types.PartidaStatusType;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.UUID;

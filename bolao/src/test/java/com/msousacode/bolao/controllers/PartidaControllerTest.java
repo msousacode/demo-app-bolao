@@ -1,7 +1,7 @@
 package com.msousacode.bolao.controllers;
 
-import com.msousacode.bolao.dtos.PartidaDTO;
-import com.msousacode.bolao.enuns.PartidaStatusType;
+import com.msousacode.bolao.web.dtos.PartidaDTO;
+import com.msousacode.bolao.persistence.entity.types.PartidaStatusType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
