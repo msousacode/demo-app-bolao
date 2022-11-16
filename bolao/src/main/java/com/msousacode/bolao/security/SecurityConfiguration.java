@@ -25,6 +25,7 @@ public class SecurityConfiguration {
                 .and()
                 .authorizeRequests(c -> c
                     .antMatchers(
+                            "/api/login",
                             "/v2/api-docs",
                             "/v3/api-docs",
                             "/configuration/ui",

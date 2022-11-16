@@ -1,13 +1,26 @@
 package com.msousacode.bolao.web.controller;
 
 
+import com.msousacode.bolao.persistence.entity.Partida;
+import com.msousacode.bolao.persistence.repository.CampeonatoRepository;
+import com.msousacode.bolao.persistence.repository.PartidaRepository;
+import com.msousacode.bolao.web.dtos.PartidaDTO;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/partidas")
 public class PartidaController {
 
-    /*@Autowired
+    @Autowired
     private PartidaRepository partidaRepository;//TODO depois criar a Service e distribuir a lógica.
 
     @Autowired
@@ -35,5 +48,5 @@ public class PartidaController {
         } else {
             throw new Exception("Não foi encontrado o recurso para o uuid: " + uuid);//TODO pensar em algo melhor.
         }
-    }*/
+    }
 }
