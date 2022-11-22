@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -22,6 +23,9 @@ public class Usuario {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @ManyToMany(mappedBy = "usuarios")
-    private List<Bolao> boloes;
+    /*@ManyToMany(mappedBy = "usuarios")
+    private List<Bolao> boloes;*/
+
+    @OneToMany(mappedBy = "usuario")
+    Set<BolaoUsuario> bolaoUsuarioSet;
 }

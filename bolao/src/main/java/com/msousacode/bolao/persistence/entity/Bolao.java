@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -26,10 +27,13 @@ public class Bolao {
     @Column(name = "link")
     private String link;
 
-    @ManyToMany
+    /*@ManyToMany
     @JoinTable(
             name = "usuarios_boloes",
             joinColumns = @JoinColumn(name = "bolao_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id"))
-    private List<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> usuarios = new ArrayList<>();*/
+
+    @OneToMany(mappedBy = "bolao")
+    Set<BolaoUsuario> bolaoUsuarioSet;
 }

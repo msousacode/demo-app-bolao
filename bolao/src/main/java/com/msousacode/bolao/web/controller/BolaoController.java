@@ -1,7 +1,10 @@
 package com.msousacode.bolao.web.controller;
 
 import com.msousacode.bolao.persistence.entity.Bolao;
+import com.msousacode.bolao.persistence.entity.BolaoUsuario;
+import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import com.msousacode.bolao.persistence.repository.BolaoRepository;
+import com.msousacode.bolao.persistence.repository.BolaoUsuarioRepository;
 import com.msousacode.bolao.persistence.repository.UsuarioRepository;
 import com.msousacode.bolao.web.dtos.BolaoDTO;
 import org.springframework.beans.BeanUtils;
@@ -15,8 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/boloes")
@@ -28,22 +29,33 @@ public class BolaoController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    @Autowired
+    private BolaoUsuarioRepository bolaoUsuarioRepository;
+
     @PostMapping
     public ResponseEntity<BolaoDTO> cadastrar(@RequestBody @Valid BolaoDTO bolaoDTO, Principal principal) {
 
         //TODO Refatorar!!!
         //TODO Gerar o Link do Bolao.
 
-        String username = principal.getName();
 
+        //Peguei o usuario logado.
+        String username = principal.getName();
         var user = usuarioRepository.findByUserName(username);
 
+
+        //Salva o Bolao
         var bolao = new Bolao();
         BeanUtils.copyProperties(bolaoDTO, bolao);
-
-        bolao.getUsuarios().add(user.get());
-
         var result = bolaoRepository.save(bolao);
+
+
+        //Salvar o relacionamento entre bolao e usuario
+        var bu = new BolaoUsuario();
+        bu.setBolao(result);
+        bu.setUsuario(user.get());
+        bu.setUsuarioType(UsuarioType.OWNER);
+        bolaoUsuarioRepository.save(bu);
 
         var response = new BolaoDTO(result.getId(), result.getNome(), result.getDescricao());
 
