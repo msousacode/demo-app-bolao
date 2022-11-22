@@ -1,12 +1,17 @@
 package com.msousacode.bolao.web.controller;
 
+import com.msousacode.bolao.exception.ServiceException;
 import com.msousacode.bolao.persistence.entity.Bolao;
 import com.msousacode.bolao.persistence.entity.BolaoUsuario;
+import com.msousacode.bolao.persistence.entity.types.ServiceErrorsType;
 import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import com.msousacode.bolao.persistence.repository.BolaoRepository;
 import com.msousacode.bolao.persistence.repository.BolaoUsuarioRepository;
 import com.msousacode.bolao.persistence.repository.UsuarioRepository;
+import com.msousacode.bolao.service.BolaoService;
 import com.msousacode.bolao.web.dtos.BolaoDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,41 +29,15 @@ import java.security.Principal;
 public class BolaoController {
 
     @Autowired
-    private BolaoRepository bolaoRepository;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private BolaoUsuarioRepository bolaoUsuarioRepository;
+    private BolaoService bolaoService;
 
     @PostMapping
     public ResponseEntity<BolaoDTO> cadastrar(@RequestBody @Valid BolaoDTO bolaoDTO, Principal principal) {
-
-        //TODO Refatorar!!!
-        //TODO Gerar o Link do Bolao.
-
-
-        //Peguei o usuario logado.
-        String username = principal.getName();
-        var user = usuarioRepository.findByUserName(username);
-
-
-        //Salva o Bolao
-        var bolao = new Bolao();
-        BeanUtils.copyProperties(bolaoDTO, bolao);
-        var result = bolaoRepository.save(bolao);
-
-
-        //Salvar o relacionamento entre bolao e usuario
-        var bu = new BolaoUsuario();
-        bu.setBolao(result);
-        bu.setUsuario(user.get());
-        bu.setUsuarioType(UsuarioType.OWNER);
-        bolaoUsuarioRepository.save(bu);
-
-        var response = new BolaoDTO(result.getId(), result.getNome(), result.getDescricao());
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        try {
+            var response = bolaoService.cadastrar(bolaoDTO, principal.getName());
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        }catch (Exception ex){
+            throw new ServiceException(HttpStatus.BAD_REQUEST, ServiceErrorsType.ERROR_WHEN_RECORDING.getMsg(), ex.getCause());
+        }
     }
 }
