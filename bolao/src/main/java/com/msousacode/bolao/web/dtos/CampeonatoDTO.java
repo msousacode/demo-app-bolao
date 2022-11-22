@@ -1,5 +1,6 @@
 package com.msousacode.bolao.web.dtos;
 
+import com.msousacode.bolao.persistence.entity.Bolao;
 import com.msousacode.bolao.persistence.entity.Campeonato;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +14,8 @@ public record CampeonatoDTO(
         @NotEmpty(message = "Nome do Campeonato não pode ser vazia.") String nome,
         @NotNull(message = "Rodada não pode ser nula.") Integer rodada,
         @NotNull(message = "Data de inicio do campeonato não deve ser nula.") LocalDate dataInicio,
-        List<PartidaDTO> partidas
+        List<PartidaDTO> partidas,
+        Bolao bolao
 ) {
     public CampeonatoDTO(Campeonato campeonato) {
         this(
@@ -21,7 +23,8 @@ public record CampeonatoDTO(
                 campeonato.getNome(),
                 campeonato.getRodada(),
                 campeonato.getDataInicio(),
-                campeonato.getPartidas().stream().map(PartidaDTO::new).toList()
+                campeonato.getPartidas().stream().map(PartidaDTO::new).toList(),
+                campeonato.getBolao()
         );
     }
 }

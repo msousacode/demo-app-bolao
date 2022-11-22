@@ -47,9 +47,9 @@ public class CampeonatoControllerTest {
     @Test
     void cadastrarCampeonato_entaoSucesso() throws Exception {
 
-        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now(), List.of());
+        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now(), List.of(), null);
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/c7c69c9c-3650-4f49-9567-606c94807179");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);

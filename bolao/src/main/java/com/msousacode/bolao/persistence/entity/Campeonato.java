@@ -27,6 +27,9 @@ public class Campeonato {
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bolao_id")
+    private Bolao bolao;
 
     @OneToMany(mappedBy = "campeonato", fetch = FetchType.EAGER)
     public List<Partida> partidas = new ArrayList<>();

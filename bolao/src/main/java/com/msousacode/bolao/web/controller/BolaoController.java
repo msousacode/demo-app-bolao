@@ -16,13 +16,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.security.Principal;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/boloes")
@@ -39,5 +39,14 @@ public class BolaoController {
         }catch (Exception ex){
             throw new ServiceException(HttpStatus.BAD_REQUEST, ServiceErrorsType.ERROR_WHEN_RECORDING.getMsg(), ex.getCause());
         }
+    }
+
+    @GetMapping("{bolaoId}/partidas")
+    public ResponseEntity<BolaoDTO> buscarBolao(
+            @PathVariable("bolaoId") @Valid @NotEmpty(message = "ID bolão não esta presente no path.") UUID bolaoId) {
+
+        var bolao = bolaoService.buscarBolao(bolaoId);
+
+        return ResponseEntity.status(HttpStatus.OK).body(bolao);
     }
 }

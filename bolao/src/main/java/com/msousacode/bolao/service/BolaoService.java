@@ -16,6 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class BolaoService {
@@ -40,7 +44,7 @@ public class BolaoService {
 
         salvarRelacionamento(bolaoResult, usuario);
 
-        return new BolaoDTO(bolaoResult.getId(), bolaoResult.getNome(), bolaoResult.getDescricao());
+        return new BolaoDTO(bolaoResult.getId(), bolaoResult.getNome(), bolaoResult.getDescricao(), null);
     }
 
     private Usuario buscarUsuarioLogado(String userName) {
@@ -57,5 +61,13 @@ public class BolaoService {
         bolaoUsuario.setUsuarioType(UsuarioType.OWNER);
 
         bolaoUsuarioRepository.save(bolaoUsuario);
+    }
+
+    public BolaoDTO buscarBolao(UUID bolaoId) {
+
+        var bolaoResult = bolaoRepository.findById(bolaoId)
+                .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
+
+        return new BolaoDTO(bolaoResult.getId(), bolaoResult.getNome(), bolaoResult.getDescricao(), null);
     }
 }

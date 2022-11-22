@@ -46,13 +46,27 @@ public class BolaoControllerTest {
 
         URI uri = new URI("http://localhost:" + port + "/api/boloes");
 
-        var bolao = new BolaoDTO(null, "Bolao" + UUID.randomUUID(), "Descri");
+        var bolao = new BolaoDTO(null, "Bolao" + UUID.randomUUID(), "Descri", null);
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
         HttpEntity<Object> request = new HttpEntity<>(bolao, headers);
 
         ResponseEntity<BolaoDTO> response = restTemplate.postForEntity(uri, request, BolaoDTO.class);
+
+        assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+    }
+
+    @Test
+    void buscarBolao_entaoSucesso() throws Exception {
+
+        URI uri = new URI("http://localhost:" + port + "/api/boloes/c7c69c9c-3650-4f49-9567-606c94807179/partidas");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<Object> request = new HttpEntity<>(headers);
+
+        ResponseEntity<BolaoDTO> response = restTemplate.exchange(uri, HttpMethod.GET, request, BolaoDTO.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED);
     }
