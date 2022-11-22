@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0008
+      author: msousacode
+      changes:
+        - dropColumn:
+            columns:
+              - column:
+                  name: usuario_id
+            tableName: boloes

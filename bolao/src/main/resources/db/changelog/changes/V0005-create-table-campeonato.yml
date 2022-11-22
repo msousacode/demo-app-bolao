@@ -38,5 +38,5 @@ databaseChangeLog:
             baseColumnNames: bolao_id
             baseTableName: campeonatos
             constraintName: fk_campeonatos_boloes
-            referencedColumnNames: campeonato_id
-            referencedTableName: campeonatos
+            referencedColumnNames: bolao_id
+            referencedTableName: boloes

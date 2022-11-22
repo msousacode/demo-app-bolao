@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -40,8 +41,7 @@ public class BolaoController {
         var bolao = new Bolao();
         BeanUtils.copyProperties(bolaoDTO, bolao);
 
-        bolao.setUsuarios(user.get());
-
+        bolao.getUsuarios().add(user.get());
 
         var result = bolaoRepository.save(bolao);
 

@@ -3,6 +3,7 @@ package com.msousacode.bolao.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -20,4 +21,7 @@ public class Usuario {
 
     @Column(name = "nome", nullable = false)
     private String nome;
+
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Bolao> boloes;
 }

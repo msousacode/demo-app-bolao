@@ -63,7 +63,7 @@ public class CampeonatoControllerTest {
     @Test
     void buscarCampenatosComAsPartidas() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/dcffed1f-b12e-4f20-9002-20d908c753d8");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bb2399dd-0dc4-4870-ad4e-ce97ed3e9893");
 
         ResponseEntity<CampeonatoDTO> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {
         });

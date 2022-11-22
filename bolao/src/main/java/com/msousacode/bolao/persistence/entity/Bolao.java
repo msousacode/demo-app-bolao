@@ -3,6 +3,8 @@ package com.msousacode.bolao.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -24,7 +26,10 @@ public class Bolao {
     @Column(name = "link")
     private String link;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuarios;
+    @ManyToMany
+    @JoinTable(
+            name = "usuarios_boloes",
+            joinColumns = @JoinColumn(name = "bolao_id"),
+            inverseJoinColumns = @JoinColumn(name = "usuario_id"))
+    private List<Usuario> usuarios = new ArrayList<>();
 }

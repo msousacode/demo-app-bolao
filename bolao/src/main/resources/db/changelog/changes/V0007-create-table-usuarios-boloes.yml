@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: V0007
+      author: msousacode
+      changes:
+        - createTable:
+            tableName: usuarios_boloes
+            columns:
+              - column:
+                  name: usuario_id
+                  type: uuid
+                constraints:
+                  nullable: false
+              - column:
+                  name: bolao_id
+                  type: uuid
+                constraints:
+                  nullable: false
+              - column:
+                  name: usuario_tipo
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseColumnNames: usuario_id
+            baseTableName: usuarios_boloes
+            constraintName: fk_usuarios_boloes_usuarios
+            referencedColumnNames: usuario_id
+            referencedTableName: usuarios
+        - addForeignKeyConstraint:
+            baseColumnNames: bolao_id
+            baseTableName: usuarios_boloes
+            constraintName: fk_usuarios_boloes_boloes
+            referencedColumnNames: bolao_id
+            referencedTableName: boloes
