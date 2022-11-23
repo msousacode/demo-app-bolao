@@ -60,7 +60,7 @@ public class BolaoControllerTest {
     @Test
     void buscarBolao_entaoSucesso() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/boloes/c7c69c9c-3650-4f49-9567-606c94807179/partidas");
+        URI uri = new URI("http://localhost:" + port + "/api/boloes/20226f85-d844-4e5d-930f-da426230c9f7/partidas");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
@@ -68,6 +68,6 @@ public class BolaoControllerTest {
 
         ResponseEntity<BolaoDTO> response = restTemplate.exchange(uri, HttpMethod.GET, request, BolaoDTO.class);
 
-        assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 }
