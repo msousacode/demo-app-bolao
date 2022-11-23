@@ -1,5 +1,6 @@
 package com.msousacode.bolao.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import lombok.Data;
 

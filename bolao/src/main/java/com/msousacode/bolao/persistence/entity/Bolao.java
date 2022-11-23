@@ -28,5 +28,5 @@ public class Bolao {
     private String link;
 
     @OneToMany(mappedBy = "bolao")
-    private Set<BolaoUsuario> bolaoUsuarioSet;
+    private List<BolaoUsuario> bolaoUsuarioSet = new ArrayList<>();
 }

@@ -31,6 +31,6 @@ public class Campeonato {
     @JoinColumn(name = "bolao_id")
     private Bolao bolao;
 
-    @OneToMany(mappedBy = "campeonato", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "campeonato")
     public List<Partida> partidas = new ArrayList<>();
 }

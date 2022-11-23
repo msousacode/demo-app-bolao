@@ -3,6 +3,7 @@ package com.msousacode.bolao.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -23,9 +24,6 @@ public class Usuario {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    /*@ManyToMany(mappedBy = "usuarios")
-    private List<Bolao> boloes;*/
-
     @OneToMany(mappedBy = "usuario")
-    Set<BolaoUsuario> bolaoUsuarioSet;
+    private List<BolaoUsuario> bolaoUsuarioSet = new ArrayList<>();
 }

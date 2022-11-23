@@ -7,6 +7,7 @@ import com.msousacode.bolao.persistence.entity.Campeonato;
 import com.msousacode.bolao.persistence.entity.types.ServiceErrorsType;
 import com.msousacode.bolao.persistence.repository.BolaoRepository;
 import com.msousacode.bolao.persistence.repository.CampeonatoRepository;
+import com.msousacode.bolao.util.BeanUtil;
 import com.msousacode.bolao.web.dtos.CampeonatoDTO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +37,10 @@ public class CampeonatoController {
             @RequestBody @Valid CampeonatoDTO campeonatoDTO,
             @NotEmpty(message = "O Id do Bolão não esta presente no path.") @PathVariable("bolaoId") @Valid UUID bolaoId) {
 
-        var campeonato = new Campeonato();
-        BeanUtils.copyProperties(campeonatoDTO, campeonato);
-
         var bolao = bolaoRepository.findById(bolaoId)
                 .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
 
+        var campeonato = (Campeonato) BeanUtil.convert(campeonatoDTO, new Campeonato());
         campeonato.setBolao(bolao);
 
         var result = campeonatoRepository.save(campeonato);
@@ -49,7 +48,8 @@ public class CampeonatoController {
         var response = new CampeonatoDTO(
                                 result.getId(),
                                 result.getNome(),
-                                result.getRodada(), result.getDataInicio(), List.of(), result.getBolao());
+                                result.getRodada(),
+                                result.getDataInicio());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

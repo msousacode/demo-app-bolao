@@ -13,18 +13,17 @@ public record CampeonatoDTO(
         UUID uuid,
         @NotEmpty(message = "Nome do Campeonato não pode ser vazia.") String nome,
         @NotNull(message = "Rodada não pode ser nula.") Integer rodada,
-        @NotNull(message = "Data de inicio do campeonato não deve ser nula.") LocalDate dataInicio,
-        List<PartidaDTO> partidas,
-        Bolao bolao
+        @NotNull(message = "Data de inicio do campeonato não deve ser nula.") LocalDate dataInicio
+        //Bolao bolao
 ) {
     public CampeonatoDTO(Campeonato campeonato) {
         this(
                 campeonato.getId(),
                 campeonato.getNome(),
                 campeonato.getRodada(),
-                campeonato.getDataInicio(),
-                campeonato.getPartidas().stream().map(PartidaDTO::new).toList(),
-                campeonato.getBolao()
+                campeonato.getDataInicio()
+                //campeonato.getPartidas().stream().map(PartidaDTO::new).toList(),
+                //campeonato.getBolao()
         );
     }
 }

@@ -47,15 +47,15 @@ public class CampeonatoControllerTest {
     @Test
     void cadastrarCampeonato_entaoSucesso() throws Exception {
 
-        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now(), List.of(), null);
+        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now());
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/c7c69c9c-3650-4f49-9567-606c94807179");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/20226f85-d844-4e5d-930f-da426230c9f7");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
         HttpEntity<Object> request = new HttpEntity<>(campeonato, headers);
 
-        ResponseEntity<Void> response = restTemplate.postForEntity(uri, request, Void.class);
+        ResponseEntity<CampeonatoDTO> response = restTemplate.postForEntity(uri, request, CampeonatoDTO.class);
 
         assertEquals(response.getStatusCode(), HttpStatus.CREATED);
     }
