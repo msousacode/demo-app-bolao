@@ -20,9 +20,9 @@ public class CampeonatoService {
     @Autowired
     private BolaoService bolaoService;
 
-    public CampeonatoDTO buscar(UUID uuid) {
+    public CampeonatoDTO buscar(UUID campeonatoId) {
 
-        var campeonato = campeonatoRepository.findById(uuid)
+        var campeonato = campeonatoRepository.findById(campeonatoId)
                 .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
 
         return new CampeonatoDTO(campeonato);

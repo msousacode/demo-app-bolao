@@ -5,6 +5,7 @@ import com.msousacode.bolao.persistence.entity.types.PartidaStatusType;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
 @Data
@@ -26,9 +27,11 @@ public class Partida {
     @Column(name = "partida_id", nullable = false)
     private UUID id;
 
+    @NotEmpty(message = "Time 1 não deve ser vazio.")
     @Column(name = "time_1")
     private String time1;
 
+    @NotEmpty(message = "Time 2 não deve ser vazio.")
     @Column(name = "time_2")
     private String time2;
 
