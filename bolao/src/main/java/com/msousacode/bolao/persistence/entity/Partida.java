@@ -3,17 +3,17 @@ package com.msousacode.bolao.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.msousacode.bolao.persistence.entity.types.PartidaStatusType;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "partidas")
 public class Partida {
-
-    public Partida(){}
 
     public Partida(Campeonato campeonato) {
         this.campeonato = campeonato;

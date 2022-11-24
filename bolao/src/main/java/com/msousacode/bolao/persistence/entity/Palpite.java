@@ -1,10 +1,12 @@
 package com.msousacode.bolao.persistence.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "palpites")

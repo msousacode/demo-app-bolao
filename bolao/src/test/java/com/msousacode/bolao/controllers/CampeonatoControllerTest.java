@@ -48,7 +48,7 @@ public class CampeonatoControllerTest {
 
         var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now(), null, null);
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/20226f85-d844-4e5d-930f-da426230c9f7");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/7df1719e-a925-4fbf-8c9a-4e672f697b44");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
@@ -62,7 +62,7 @@ public class CampeonatoControllerTest {
     @Test
     void buscarCampenatosComAsPartidas() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/fdbd56ee-f4f4-4960-bf0a-0b7b8fd7c6fd/partidas");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/28240d50-d8ed-4e56-9b0a-3ec12d4a7ce4/partidas");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);

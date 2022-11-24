@@ -1,6 +1,7 @@
 package com.msousacode.bolao.persistence.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "boloes")
@@ -32,4 +34,9 @@ public class Bolao {
 
     @OneToMany(mappedBy = "bolao")
     private List<BolaoUsuario> bolaoUsuarioSet = new ArrayList<>();
+
+    public Bolao(String nome, String descricao) {
+        this.nome = nome;
+        this.descricao = descricao;
+    }
 }

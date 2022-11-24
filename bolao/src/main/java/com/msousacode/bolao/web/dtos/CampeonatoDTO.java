@@ -34,7 +34,7 @@ public record CampeonatoDTO(
                 campeonato.getRodada(),
                 campeonato.getDataInicio(),
                 new BolaoDTO(campeonato.getBolao()),
-                campeonato.getPartidas().stream().map(PartidaDTO::new).toList()
+                campeonato.getPartidas() == null ? List.of() : campeonato.getPartidas().stream().map(PartidaDTO::new).toList()
         );
     }
 }

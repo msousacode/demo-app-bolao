@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.msousacode.bolao.persistence.entity.Bolao;
 import com.msousacode.bolao.persistence.entity.Campeonato;
 
+import java.util.List;
 import java.util.UUID;
 
 public record BolaoDTO(
@@ -18,7 +19,7 @@ public record BolaoDTO(
         String descricao,
 
         @JsonProperty("campeonato")
-        CampeonatoDTO campeonatoDTO
+        CampeonatoBolaoDTO campeonatoDTO
 
 ) {
     public BolaoDTO(Bolao bolao, Campeonato campeonato) {
@@ -26,7 +27,7 @@ public record BolaoDTO(
                 bolao.getId(),
                 bolao.getNome(),
                 bolao.getDescricao(),
-                new CampeonatoDTO(campeonato)
+                new CampeonatoBolaoDTO(campeonato)
         );
     }
 

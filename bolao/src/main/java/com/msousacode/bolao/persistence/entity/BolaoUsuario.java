@@ -2,10 +2,12 @@ package com.msousacode.bolao.persistence.entity;
 
 import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "usuarios_boloes")

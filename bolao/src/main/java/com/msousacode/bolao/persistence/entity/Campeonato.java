@@ -1,6 +1,7 @@
 package com.msousacode.bolao.persistence.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@NoArgsConstructor
 @Data
 @Entity
 @Table(name = "campeonatos")
@@ -32,7 +34,7 @@ public class Campeonato {
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "bolao_id")
     private Bolao bolao;
 

@@ -17,7 +17,8 @@ databaseChangeLog:
                   name: bolao_id
                   type: uuid
                   constraints:
-                    nullable: true
+                    nullable: false
+                    unique: true
               - column:
                   name: nome
                   type: varchar(255)

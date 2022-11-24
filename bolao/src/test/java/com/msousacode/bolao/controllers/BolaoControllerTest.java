@@ -1,5 +1,6 @@
 package com.msousacode.bolao.controllers;
 
+import com.msousacode.bolao.persistence.entity.Bolao;
 import com.msousacode.bolao.web.dtos.BolaoDTO;
 import com.msousacode.bolao.web.dtos.LoginDTO;
 import com.msousacode.bolao.web.dtos.TokenIdDTO;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 
 import java.net.URI;
@@ -46,7 +46,7 @@ public class BolaoControllerTest {
 
         URI uri = new URI("http://localhost:" + port + "/api/boloes");
 
-        var bolao = new BolaoDTO(null, "Bolao" + UUID.randomUUID(), "Descri", null);
+        var bolao = new Bolao("Bolao" + UUID.randomUUID(), "Descri");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);
@@ -60,7 +60,7 @@ public class BolaoControllerTest {
     @Test
     void buscarBolao_entaoSucesso() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/boloes/20226f85-d844-4e5d-930f-da426230c9f7/partidas");
+        URI uri = new URI("http://localhost:" + port + "/api/boloes/7df1719e-a925-4fbf-8c9a-4e672f697b44/campeonato/partidas");
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", "Bearer " + token);

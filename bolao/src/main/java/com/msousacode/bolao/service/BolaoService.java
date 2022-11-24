@@ -8,6 +8,7 @@ import com.msousacode.bolao.persistence.entity.types.ServiceErrorsType;
 import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import com.msousacode.bolao.persistence.repository.BolaoRepository;
 import com.msousacode.bolao.persistence.repository.BolaoUsuarioRepository;
+import com.msousacode.bolao.persistence.repository.CampeonatoRepository;
 import com.msousacode.bolao.persistence.repository.UsuarioRepository;
 import com.msousacode.bolao.web.dtos.BolaoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,9 @@ public class BolaoService {
 
     @Autowired
     private BolaoUsuarioRepository bolaoUsuarioRepository;
+
+    @Autowired
+    private CampeonatoRepository campeonatoRepository;
 
     public Bolao buscar(UUID bolaoId) {
 
@@ -71,6 +75,9 @@ public class BolaoService {
         var bolaoResult = bolaoRepository.findById(bolaoId)
                 .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
 
-        return new BolaoDTO(bolaoResult.getId(), bolaoResult.getNome(), bolaoResult.getDescricao(), null);
+        var campeonatoResult = campeonatoRepository.findByBolao_Id(bolaoId)
+                .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
+
+        return new BolaoDTO(bolaoResult, campeonatoResult);
     }
 }

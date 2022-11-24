@@ -27,7 +27,7 @@ public class BolaoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    @GetMapping("{bolaoId}/partidas")
+    @GetMapping("{bolaoId}/campeonato/partidas")
     public ResponseEntity<BolaoDTO> buscarBolao(
             @PathVariable("bolaoId") @Valid @NotEmpty(message = "ID bolão não esta presente no path.") UUID bolaoId) {
 
