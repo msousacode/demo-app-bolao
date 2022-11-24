@@ -3,9 +3,10 @@ package com.msousacode.bolao.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
@@ -18,9 +19,11 @@ public class Bolao {
     @Column(name = "bolao_id", nullable = false)
     private UUID id;
 
+    @NotEmpty(message = "Nonme do bolão não deve ser vazio.")
     @Column(name = "nome", nullable = false)
     private String nome;
 
+    @Size(max = 255, message = "Descrição não deve ultrapassar 255 caracteres.")
     @Column(name = "descricao", nullable = false)
     private String descricao;
 

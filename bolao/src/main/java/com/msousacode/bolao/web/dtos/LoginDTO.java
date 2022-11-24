@@ -1,9 +1,17 @@
 package com.msousacode.bolao.web.dtos;
 
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import javax.validation.constraints.NotEmpty;
 
 public record LoginDTO(
-        @NotNull(message = "O username não deve ser nulo.") String username,
-        @NotNull(message = "O password não deve ser nulo.") String password
+
+        @JsonProperty("username")
+        @NotEmpty(message = "O username não deve ser nulo.")
+        String username,
+
+        @JsonProperty("password")
+        @NotEmpty(message = "O password não deve ser nulo.")
+        String password
 ) {
 }

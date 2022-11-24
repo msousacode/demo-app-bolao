@@ -3,6 +3,8 @@ package com.msousacode.bolao.persistence.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +20,15 @@ public class Campeonato {
     @Column(name = "campeonato_id", nullable = false)
     private UUID id;
 
+    @NotEmpty(message = "Nome do Campeonato não pode ser vazia.")
     @Column(name = "nome")
     private String nome;
 
+    @NotNull(message = "Rodada não pode ser nula.")
     @Column(name = "rodada")
     private Integer rodada;
 
+    @NotNull(message = "Data de inicio do campeonato não deve ser nula.")
     @Column(name = "data_inicio")
     private LocalDate dataInicio;
 

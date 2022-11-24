@@ -9,7 +9,6 @@ import com.msousacode.bolao.persistence.entity.types.UsuarioType;
 import com.msousacode.bolao.persistence.repository.BolaoRepository;
 import com.msousacode.bolao.persistence.repository.BolaoUsuarioRepository;
 import com.msousacode.bolao.persistence.repository.UsuarioRepository;
-import com.msousacode.bolao.util.BeanUtil;
 import com.msousacode.bolao.web.dtos.BolaoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,17 +35,13 @@ public class BolaoService {
     }
 
     @Transactional
-    public BolaoDTO cadastrar(BolaoDTO bolaoDTO, String userName) {
+    public BolaoDTO cadastrar(Bolao bolao, String userName) {
 
-        var usuario = buscarUsuarioLogado(userName);
+        var createResult = bolaoRepository.save(bolao);
 
-        var bolao = (Bolao) BeanUtil.convert(bolaoDTO, new Bolao());
+        salvarRelacionamento(createResult, userName);
 
-        var bolaoResult = bolaoRepository.save(bolao);
-
-        salvarRelacionamento(bolaoResult, usuario);
-
-        return new BolaoDTO(bolaoResult.getId(), bolaoResult.getNome(), bolaoResult.getDescricao(), null);
+        return new BolaoDTO(createResult.getId(), createResult.getNome(), createResult.getDescricao(), null);
     }
 
     private Usuario buscarUsuarioLogado(String userName) {
@@ -55,10 +50,15 @@ public class BolaoService {
                 .orElseThrow(() -> new ServiceException(ServiceErrorsType.RESOURCE_NOT_FOUND));
     }
 
-    private void salvarRelacionamento(Bolao bolao, Usuario usuario) {
+    private void salvarRelacionamento(Bolao bolao, String userName) {
+
+        var usuario = buscarUsuarioLogado(userName);
 
         var bolaoUsuario = new BolaoUsuario();
 
+        /*
+         * Realiza o vinculo entre as entidades Bolao e Usuário.
+         */
         bolaoUsuario.setBolao(bolao);
         bolaoUsuario.setUsuario(usuario);
         bolaoUsuario.setUsuarioType(UsuarioType.OWNER);
