@@ -44,9 +44,9 @@ public class PartidaControllerTest {
     }
 
     @Test
-    void cadastrarCampeonato_entaoSucesso() throws Exception {
+    void cadastrarPartida_entaoSucesso() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/partidas/dcffed1f-b12e-4f20-9002-20d908c753d8/campeonato");
+        URI uri = new URI("http://localhost:" + port + "/api/partidas/campeonato/fdbd56ee-f4f4-4960-bf0a-0b7b8fd7c6fd");
 
         var partida = new PartidaDTO(null, "BRA", "ARG", 0, 0, PartidaStatusType.NAO_FINALIZADA);
 

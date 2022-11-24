@@ -27,7 +27,7 @@ public class PartidaController {
     private CampeonatoRepository campeonatoRepository;
 
     @Transactional
-    @PostMapping("/campeonatos/{campeonato_id}")
+    @PostMapping("/campeonato/{campeonato_id}")
     public ResponseEntity<PartidaDTO> cadastrar(
             @RequestBody @Valid PartidaDTO partidaDTO,
             @PathVariable("campeonato_id") @NotEmpty(message = "ID do Campeonato deve ser informado") @Valid UUID uuid) throws Exception {

@@ -33,4 +33,13 @@ public record BolaoDTO(
                 new CampeonatoDTO(campeonato)
         );
     }
+
+    public BolaoDTO(Bolao bolao) {
+        this(
+                bolao.getId(),
+                bolao.getNome(),
+                bolao.getDescricao(),
+                null
+        );
+    }
 }

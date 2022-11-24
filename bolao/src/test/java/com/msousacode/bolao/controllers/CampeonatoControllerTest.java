@@ -14,7 +14,6 @@ import org.springframework.http.*;
 
 import java.net.URI;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -47,7 +46,7 @@ public class CampeonatoControllerTest {
     @Test
     void cadastrarCampeonato_entaoSucesso() throws Exception {
 
-        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now());
+        var campeonato = new CampeonatoDTO(null, "Campeonato " + UUID.randomUUID(), 1, LocalDate.now(), null, null);
 
         URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bolao/20226f85-d844-4e5d-930f-da426230c9f7");
 
@@ -63,9 +62,13 @@ public class CampeonatoControllerTest {
     @Test
     void buscarCampenatosComAsPartidas() throws Exception {
 
-        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/bb2399dd-0dc4-4870-ad4e-ce97ed3e9893");
+        URI uri = new URI("http://localhost:" + port + "/api/campeonatos/fdbd56ee-f4f4-4960-bf0a-0b7b8fd7c6fd/partidas");
 
-        ResponseEntity<CampeonatoDTO> response = restTemplate.exchange(uri, HttpMethod.GET, null, new ParameterizedTypeReference<>() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+        HttpEntity<Object> request = new HttpEntity<>(headers);
+
+        ResponseEntity<CampeonatoDTO> response = restTemplate.exchange(uri, HttpMethod.GET, request, new ParameterizedTypeReference<>() {
         });
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
